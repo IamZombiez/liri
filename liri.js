@@ -26,28 +26,27 @@ for (var i = 3; i < searchArray.length; i++) {
 
 
   //Spotify
-	spotify.search({ type: 'track', query: userInput }, function(err, data) {
-      if ( err ) {
-          console.log('Error occurred: ' + err);
+	 spotify.search({ type: 'track', query: userInput }, function(err, data) {
+        if ( err ) {
+          console.log('Error Occurred: ' + err);
            return;
-      } else if (process.argv[2] === "spotify-this-song"){
-    	  // console.log(data.tracks.items[0])
-        console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
-        console.log("Song Name: " + data.tracks.items[0].name);
-        console.log("Spotify Preview URL: " + data.tracks.items[0].preview_url);
-    		console.log("Album Name: " + data.tracks.items[0].album.name);
-    	}
-	});
+        } else if (process.argv[2] === "spotify-this-song"){
+           console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
+           console.log("Song Name: " + data.tracks.items[0].name);
+           console.log("Spotify Preview URL: " + data.tracks.items[0].preview_url);
+    	    	console.log("Album Name: " + data.tracks.items[0].album.name);
+        	}
+	  });
+  
 
   //Twitter my-tweets
     keys.get('statuses/user_timeline', function(err, tweets, response){
         if(err){
-          console.log(err)
+          console.log("Error Occured: " + err);
         } else if (process.argv[2] === "my-tweets"){
-           //  for ( var i = 0; i <= tweets.length; i++ )
-           //  console.log(tweets[i].text + " " + tweets.user[i])
-           console.log(tweets[0].text)
-           console.log(tweets[1].user.created_at)
+            // For Loop i <= needs to be dynamic
+            for ( var i = 0; i <= 2; i++ )
+            console.log("Tweet Content: " + tweets[i].text + " " + "Tweeted @: " + tweets[i].created_at)
             }
     }); 
        
@@ -72,8 +71,40 @@ for (var i = 3; i < searchArray.length; i++) {
       }; 
   });
 
-   // * Rotten Tomatoes URL.
+   //  Rotten Tomatoes URL.
 
-   //FS do-what-it-say
+   //FS do-what-it-says
 
-  
+   // fs.readFile("random.txt", "utf8", function(err, data){
+   //     console.log(data)
+   //     return data}).then(function(data){
+
+   //      spotify.search({ type: 'track', query: data }, function(err, data) {
+   //      if ( err ) {
+   //        console.log('Error Occurred: ' + err);
+   //         return;
+   //      } else if (process.argv[2] === "spotify-this-song"){
+   //         console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
+   //         console.log("Song Name: " + data.tracks.items[0].name);
+   //         console.log("Spotify Preview URL: " + data.tracks.items[0].preview_url);
+   //         console.log("Album Name: " + data.tracks.items[0].album.name);
+   //        }
+   //    })
+   //  });
+    
+fs.readFile("random.txt", "utf8", function(err, data){
+       console.log(data)
+       var random = data
+  });
+
+spotify.search({ type: 'track', query: data }, function(err, data) {
+        if ( err ) {
+          console.log('Error Occurred: ' + err);
+           return;
+        } else if (process.argv[2] === "spotify-this-song"){
+           console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
+           console.log("Song Name: " + data.tracks.items[0].name);
+           console.log("Spotify Preview URL: " + data.tracks.items[0].preview_url);
+           console.log("Album Name: " + data.tracks.items[0].album.name);
+          }
+      });
