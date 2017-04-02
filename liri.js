@@ -1,8 +1,19 @@
 // Require Dependecies
+require('dotenv').config()
 var fs = require("fs");
 var spotify = require("spotify");
-var twitter = require("twitter")
-var request = require("request")
+var Twitter = require("twitter");
+var request = require("request");
+
+
+
+var keys = new Twitter({
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  access_token_key: process.env.ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.ACCESS_TOKEN_SECRET,
+});
+
 
 // Array
 var searchArray = process.argv;
@@ -29,7 +40,18 @@ for (var i = 3; i < searchArray.length; i++) {
 	});
 
   //Twitter my-tweets
-
+    keys.get('statuses/user_timeline', function(err, tweets, response){
+        if(err){
+          console.log(err)
+        } else if (process.argv[2] === "my-tweets"){
+           //  for ( var i = 0; i <= tweets.length; i++ )
+           //  console.log(tweets[i].text + " " + tweets.user[i])
+           console.log(tweets[0].text)
+           console.log(tweets[1].user.created_at)
+            }
+    }); 
+       
+ 
 
 
 
@@ -46,21 +68,12 @@ for (var i = 3; i < searchArray.length; i++) {
         console.log("Language: " + JSON.parse(body).Language);
         console.log("Plot: " + JSON.parse(body).Plot);
         console.log("Starring: " + JSON.parse(body).Actors);
-      };
-
-      // console.log('error:', error); // Print the error if one occurred 
-      // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
-      // console.log('body:', body); // Print the HTML for the Google homepage. 
+        // console.log("Movie Info URL: " + JSON.parse(body).Actors);
+      }; 
   });
 
-   // * Title of the movie.
-   // * Year the movie came out.
-   // * IMDB Rating of the movie.
-   // * Country where the movie was produced.
-   // * Language of the movie.
-   // * Plot of the movie.
-   // * Actors in the movie.
-   // * Rotten Tomatoes Rating.
    // * Rotten Tomatoes URL.
 
-   //FS do-what-it-says
+   //FS do-what-it-say
+
+  
