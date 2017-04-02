@@ -21,10 +21,10 @@ for (var i = 3; i < searchArray.length; i++) {
            return;
       } else if (process.argv[2] === "spotify-this-song"){
     	  // console.log(data.tracks.items[0])
-        console.log("Artist Name:" + " " + data.tracks.items[0].artists[0].name)
-        console.log("Song Name:" + " " + data.tracks.items[0].name)
-        console.log("Spotify Preview URL:" + " " + data.tracks.items[0].preview_url)
-    		console.log("Album Name:" + " " + data.tracks.items[0].album.name)
+        console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
+        console.log("Song Name: " + data.tracks.items[0].name);
+        console.log("Spotify Preview URL: " + data.tracks.items[0].preview_url);
+    		console.log("Album Name: " + data.tracks.items[0].album.name);
     	}
 	});
 
@@ -38,8 +38,15 @@ for (var i = 3; i < searchArray.length; i++) {
       if (err) {
         console.log("Error Occured: " + err);
       } else if (process.argv[2] === "movie-this"){
-        console.log(body)
-      }
+        console.log("Title: " + JSON.parse(body).Title);
+        console.log("Release Date: " + JSON.parse(body).Released);
+        console.log("IMDB Rating: " + JSON.parse(body).Ratings[0].Value);
+        console.log("Rotten Tomatoes: " + JSON.parse(body).Ratings[1].Value);
+        console.log("Country of Origin: " + JSON.parse(body).Country);
+        console.log("Language: " + JSON.parse(body).Language);
+        console.log("Plot: " + JSON.parse(body).Plot);
+        console.log("Starring: " + JSON.parse(body).Actors);
+      };
 
       // console.log('error:', error); // Print the error if one occurred 
       // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
