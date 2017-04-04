@@ -22,7 +22,7 @@ var userInput = "";
 // Loop to hit multiple words in a user query
 for (var i = 3; i < searchArray.length; i++) {
     userInput = userInput + "+" + searchArray[i];
-}
+} 
 
 
   //Spotify
@@ -34,10 +34,9 @@ for (var i = 3; i < searchArray.length; i++) {
            console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
            console.log("Song Name: " + data.tracks.items[0].name);
            console.log("Spotify Preview URL: " + data.tracks.items[0].preview_url);
-    	    	console.log("Album Name: " + data.tracks.items[0].album.name);
-        	}
+    	     console.log("Album Name: " + data.tracks.items[0].album.name);
+        	} 
 	  });
-  
 
   //Twitter my-tweets
     keys.get('statuses/user_timeline', function(err, tweets, response){
@@ -45,8 +44,9 @@ for (var i = 3; i < searchArray.length; i++) {
           console.log("Error Occured: " + err);
         } else if (process.argv[2] === "my-tweets"){
             // For Loop i <= needs to be dynamic
-            for ( var i = 0; i <= 2; i++ )
-            console.log("Tweet Content: " + tweets[i].text + " " + "Tweeted @: " + tweets[i].created_at)
+            for ( var i = 0; i < tweets.length; i++ )
+            console.log("Twitter Msg: " + tweets[i].text + " " + "Tweeted @: " + tweets[i].created_at)
+            
             }
     }); 
        
@@ -67,44 +67,26 @@ for (var i = 3; i < searchArray.length; i++) {
         console.log("Language: " + JSON.parse(body).Language);
         console.log("Plot: " + JSON.parse(body).Plot);
         console.log("Starring: " + JSON.parse(body).Actors);
-        // console.log("Movie Info URL: " + JSON.parse(body).Actors);
-      }; 
+        // console.log("Movie Info URL: " + Rotten Tomatoes URL.);
+        }; 
   });
 
-   //  Rotten Tomatoes URL.
 
    //FS do-what-it-says
-
-   // fs.readFile("random.txt", "utf8", function(err, data){
-   //     console.log(data)
-   //     return data}).then(function(data){
-
-   //      spotify.search({ type: 'track', query: data }, function(err, data) {
-   //      if ( err ) {
-   //        console.log('Error Occurred: ' + err);
-   //         return;
-   //      } else if (process.argv[2] === "spotify-this-song"){
-   //         console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
-   //         console.log("Song Name: " + data.tracks.items[0].name);
-   //         console.log("Spotify Preview URL: " + data.tracks.items[0].preview_url);
-   //         console.log("Album Name: " + data.tracks.items[0].album.name);
-   //        }
-   //    })
-   //  });
-    
-fs.readFile("random.txt", "utf8", function(err, data){
-       console.log(data)
-       var random = data
+  fs.readFile("random.txt", "utf8", function(err, data){
+                var random = data
+                spotify.search({ type: 'track', query: data}, function(err, data) {
+                  if (err){
+                    console.log('Error Occured: ' + err);
+                  } else if(process.argv[2] === "do-what-it-says" ){
+                    console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
+                    console.log("Song Name: " + data.tracks.items[0].name);
+                    console.log("Spotify Preview URL: " + data.tracks.items[0].preview_url);
+                    console.log("Album Name: " + data.tracks.items[0].album.name);
+                    }
+                })
   });
 
-spotify.search({ type: 'track', query: data }, function(err, data) {
-        if ( err ) {
-          console.log('Error Occurred: ' + err);
-           return;
-        } else if (process.argv[2] === "spotify-this-song"){
-           console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
-           console.log("Song Name: " + data.tracks.items[0].name);
-           console.log("Spotify Preview URL: " + data.tracks.items[0].preview_url);
-           console.log("Album Name: " + data.tracks.items[0].album.name);
-          }
-      });
+
+       
+    
