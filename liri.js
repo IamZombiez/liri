@@ -70,11 +70,11 @@ function readRandom(){
 
 if(process.argv[2] === "spotify-this-song"){
   music()
-  } if (process.argv[2] === "movie-this"){
+  } else if (process.argv[2] === "movie-this"){
     movie()
-    } if (process.argv[2] === "my-tweets"){
+    } else if (process.argv[2] === "my-tweets"){
       oneForty()
-      } if (process.argv[2] === "do-what-it-says"){
+      } else if (process.argv[2] === "do-what-it-says"){
           readRandom()
         };
 
