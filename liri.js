@@ -68,7 +68,7 @@ function readRandom(){
   })
 };
 
-if(process.argv[2] === "spotify-this-song" && process.argv[3] !== ""){
+if(process.argv[2] === "spotify-this-song"){
   music()
   } if (process.argv[2] === "movie-this"){
     movie()
@@ -79,12 +79,3 @@ if(process.argv[2] === "spotify-this-song" && process.argv[3] !== ""){
         };
 
 
-
-// } else {
-//    spotify.search({ type: 'track', query: 'The Sign by Ace of Base' }, function(err, data) {
-//            console.log("Artist Name: " + data.tracks.items[0].artists[0].name);
-//            console.log("Song Name: " + data.tracks.items[0].name);
-//            console.log("Spotify Preview URL: " + data.tracks.items[0].preview_url);
-//            console.log("Album Name: " + data.tracks.items[0].album.name);   
-//     })
-//   }
